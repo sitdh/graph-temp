@@ -28,5 +28,13 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0",
+    "polymerfire": "firebase/polymerfire#^2.2.1"
+  },
+  "devDependencies": {
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.17",
+    "web-component-tester": "Polymer/web-component-tester#^6.4.0"
+  }
 }
