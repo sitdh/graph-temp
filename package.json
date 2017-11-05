@@ -1,7 +1,7 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "graph",
+  "version": "0.0.0-SNAPSHOT",
+  "description": "A minimal Graph display",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -9,12 +9,14 @@
   "repository": "https://github.com/electron/electron-quick-start",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
-    "demo"
+    "Graph",
+    "Software Testing",
+    "Control Flow Graph",
+    "CFG",
+    "Static Call Graph",
+    "SCG"
   ],
-  "author": "GitHub",
+  "author": "Sitdhibong Laokok <sitdhibong@gmail.com>",
   "license": "CC0-1.0",
   "devDependencies": {
     "electron": "~1.7.8"

@@ -1,0 +1,32 @@
+{
+  "name": "Graph",
+  "description": "A minimal Graph display",
+  "main": "main.js",
+  "authors": [
+    "Sitdhibong Laokok"
+  ],
+  "license": "CC0-1.0",
+  "keywords": [
+    "Electron",
+    "Graph",
+    "Software",
+    "Testing",
+    "Control",
+    "Flow",
+    "Graph",
+    "CFG",
+    "Static",
+    "Call",
+    "Graph",
+    "SCG"
+  ],
+  "homepage": "https://we.in.th",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
