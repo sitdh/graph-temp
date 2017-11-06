@@ -1,0 +1,16 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="firebase-init">
+  <script>
+    const config = {
+      apiKey: '',
+      authDomain: '',
+      databaseURL: '',
+      projectId: '',
+      storageBucket: '',
+      messagingSenderId: ''
+    }
+    firebase.initializeApp(config);
+    console.log(firebase);
+  </script>
+</dom-module>
