@@ -7,6 +7,8 @@ const BrowserWindow = electron.BrowserWindow
 const path = require('path')
 const url = require('url')
 
+const {Menu, protocol} = require('electron')
+
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
@@ -32,6 +34,15 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  protocol.registerFileProtocol('graph', (request, callback) => {
+    const url = request.url.substr(8)
+    callback({path: path.normalize(`${__dirname}/${url}`)})
+  }, (error) => {
+    if (error) console.error('Failured')
+  })
+
+  MenuRegister(Menu)
 }
 
 // This method will be called when Electron has finished
@@ -58,3 +69,38 @@ app.on('activate', function () {
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
+
+function MenuRegister(menuModel) {
+  const template = [
+    {
+      label: 'Edit',
+      submenu: [
+        {role: 'undo'}
+      ]
+    },
+    {
+      label: 'Help',
+      submenu: [
+        {
+          label: 'Learn More',
+          click () { require('electron').shell.openExternal('https://electron.atom.io') }
+        }
+      ]
+    }
+  ]
+
+  if ('darwin' == process.platform) {
+    template.unshift({
+      label: app.getName(),
+      submenu: [
+        {role: 'about'},
+        {role: 'reload'},
+        {role: 'forcereload'},
+        {role: 'toggledevtools'}
+      ]
+    })
+  }
+
+  const menu = menuModel.buildFromTemplate(template)
+  menuModel.setApplicationMenu(menu)
+}
