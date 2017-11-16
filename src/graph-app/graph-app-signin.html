@@ -1,0 +1,68 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="graph-app-signin">
+  <template>
+    <link rel="stylesheet" href="../../bower_components/components-font-awesome/css/font-awesome.min.css">
+    <style is="custom-style">
+      .signin-page-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .logo-container,
+      .action-container {
+        width: 200px;
+      }
+      .logo-container {
+        margin: 20px auto;
+      }
+
+      .btn {
+        position: relative;
+        width: 100%;
+        color: var(--graph-color-white);
+        background-color: var(--graph-color-black);
+        border-radius: 5px;
+      }
+
+      .action-container {
+        display: flex;
+      }
+
+      .g-button {
+        cursor: pointer;
+        padding-left: 44px;
+        line-height: 1.8em;
+        vertical-align: middle;
+      }
+
+      .g-button .fa {
+        border-right: solid 0.7px #444;
+        position: absolute;
+        left: 0;
+        padding: 5px 10px;
+        font-size: 1.2em;
+      }
+
+    </style>
+    <div class="signin-page-container">
+      <div class="logo-container">
+        <img src="../../static/img/diagram.svg">
+      </div>
+      <div class="action-container">
+        <div class="btn g-button">
+          <span class="fa fa-github"></span> 
+          Sign-in with Github
+        </div>
+      </div>
+    </div>
+  </template>
+  <script>
+    class GraphAppSigninElement extends Polymer.Element {
+      static get is() { return 'graph-app-signin' }
+    }
+    window.customElements.define(GraphAppSigninElement.is, GraphAppSigninElement);
+  </script>
+</dom-module>
