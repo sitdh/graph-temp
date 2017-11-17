@@ -2,6 +2,9 @@
 
 <link rel="import" href="../../bower_components/font-roboto/roboto.html">
 
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
 <link rel="import" href="../../bower_components/app-layout/app-toolbar/app-toolbar.html">
 <link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
 <link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
@@ -31,6 +34,7 @@
         margin: 0;
         font-family: 'Roboto', 'Noto', sans-serif;
         background: var(--base-color);
+
       }
 
       app-drawer-layout:not([narrow]) [drawer-toggle] {
@@ -165,6 +169,10 @@
       static get is() { return 'graph-app' }
       static get properties() {
         return {
+          route: {
+            type: Object,
+            notify: true,
+          },
           appName: String,
           routeData: {
             type: Object,
@@ -181,6 +189,7 @@
             type: Boolean,
             value: false,
             notify: true,
+            observer: '_routeUpdate',
           },
         }
 
@@ -192,9 +201,19 @@
         const auth = firebase.auth()
         auth.onAuthStateChanged(user => {
           this.isAuthenticated = (null != user)
+          // const path = (null == user) ? '/' : '/home' 
+          // this.set('route.path', path)
+          // console.log(this.route.path)
         });
       }
 
+      _routeUpdate(e) {
+        if (e && this.route.path == '/') {
+          this.set('route.path', '/home')
+        } else {
+          this.set('route.path', '/')
+        }
+      }
     }
     window.customElements.define(GraphApplication.is, GraphApplication);
   </script>
