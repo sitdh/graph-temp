@@ -1,8 +1,14 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 <link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+
+<link rel="import" href="../../bower_components/polymerfire/firebase-auth.html">
 
 <dom-module id="graph-app-signin">
   <template>
-    <link rel="stylesheet" href="../../bower_components/components-font-awesome/css/font-awesome.min.css">
+
     <style is="custom-style">
       .signin-page-container {
         display: flex;
@@ -13,7 +19,7 @@
 
       .logo-container,
       .action-container {
-        width: 200px;
+        width: 300px;
       }
       .logo-container {
         margin: 20px auto;
@@ -39,29 +45,74 @@
       }
 
       .g-button .fa {
-        border-right: solid 0.7px #444;
+        border-right: solid 2px #444;
         position: absolute;
         left: 0;
         padding: 5px 10px;
-        font-size: 1.2em;
+        font-size: 1.5em;
       }
 
     </style>
+
+    <firebase-auth id="userauth" 
+      user="{{user}}" 
+      provider="{{provider}}" 
+      on-error="errorHandler">
+    </firebase-auth>
+
     <div class="signin-page-container">
       <div class="logo-container">
-        <img src="../../static/img/diagram.svg">
+        <img src="./static/img/diagram.svg">
       </div>
       <div class="action-container">
-        <div class="btn g-button">
-          <span class="fa fa-github"></span> 
+        <paper-button id="gitAuthButton" class="btn g-button" on-tap="performSignin">
+          <i class="fa fa-github"></i>
+          Sign-in with Github
+        </paper-button>
+        <!--
+        <div id="gitAuthButton" class="btn g-button">
+          <i class="fa fa-github"></i> 
           Sign-in with Github
         </div>
+        -->
       </div>
     </div>
   </template>
   <script>
     class GraphAppSigninElement extends Polymer.Element {
       static get is() { return 'graph-app-signin' }
+
+      static get properties() {
+        return {
+          provider: {
+            type: String,
+            value: 'github',
+          },
+          user: {
+            type: Object,
+          },
+        }
+      }
+      
+      performSignin() {
+        const provider = new firebase.auth.GithubAuthProvider();
+        provider.addScope('repo');
+        provider.setCustomParameters({
+          'allow_signup': 'false'
+        })
+
+        this.$.userauth.signInWithPopup(provider)
+          .then(response => {
+            console.log(response)
+          })
+          .catch(error => {
+            console.error(error)
+          })
+      }
+
+      errorHandler(e) {
+        console.error(e)
+      }
     }
     window.customElements.define(GraphAppSigninElement.is, GraphAppSigninElement);
   </script>
