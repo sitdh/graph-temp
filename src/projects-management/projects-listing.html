@@ -1,0 +1,13 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+
+<dom-module id="projects-listing">
+  <template>
+    List projects in repository
+  </template>
+  <script>
+    class ProjectListingElement extends Polymer.Element {
+      static get is() { return 'projects-listing'; }
+    }
+    window.customElements.define(ProjectListingElement.is, ProjectListingElement);
+  </script>
+</dom-module>

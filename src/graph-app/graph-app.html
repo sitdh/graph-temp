@@ -18,8 +18,10 @@
 <link rel="import" href="../../bower_components/paper-item/paper-icon-item.html">
 
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
 
 <link rel="import" href="graph-app-signin.html">
+<link rel="import" href="../projects-management/projects-listing.html">
 
 <dom-module id="graph-app">
   <template>
@@ -83,62 +85,20 @@
           </app-toolbar>
 
           <div class="drawer-contents" auth-condition="has-authority">
-            <a href="[[pathPrefix]]projects">
+            <a href="[[pathPrefix]]home">
               <paper-icon-item on-tap="">
-                <iron-icon icon="icons:archive" item-icon slot="item-icon"></iron-icon>
-                Projects
-              </paper-icon-item>
-            </a>
-            <!--
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
                 <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Import Repository
+                Home
               </paper-icon-item>
             </a>
 
-            <a href="import">
+            <a href="[[pathPrefix]]preferences">
               <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Instrument Code
+                <iron-icon icon="icons:settings" item-icon slot="item-icon"></iron-icon>
+                Preferences
               </paper-icon-item>
             </a>
 
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Create Graph
-              </paper-icon-item>
-            </a>
-
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Generate Test Case
-              </paper-icon-item>
-            </a>
-
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Refine Input Data
-              </paper-icon-item>
-            </a>
-
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Perform Testing
-              </paper-icon-item>
-            </a>
-
-            <a href="import">
-              <paper-icon-item on-tap="" toggles="" page-index$="another">
-                <iron-icon icon="icons:home" item-icon slot="item-icon"></iron-icon>
-                Evaluation
-              </paper-icon-item>
-            </a>
-            -->
           </div>
         </app-drawer>
       </template>
@@ -153,7 +113,10 @@
 
         <!-- Content body -->
         <template is="dom-if" if="[[isAuthenticated]]">
-          Hello
+          <iron-pages fallback-selection="home" selected="[[routeData.module]]" attr-for-selected="module">
+            <projects-listing module="home"></projects-listing>
+            <div module="preferences">Setting app</div>
+          </iron-pages>
         </template>
 
         <template is="dom-if" if="[[!isAuthenticated]]">
