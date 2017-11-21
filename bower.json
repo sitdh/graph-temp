@@ -40,7 +40,8 @@
     "font-roboto-local": "PolymerElements/font-roboto-local#^1.0.1",
     "paper-styles": "PolymerElements/paper-styles#^2.0.0",
     "paper-icon-button": "PolymerElements/paper-icon-button#^2.0.1",
-    "components-font-awesome": "^4.7.0"
+    "components-font-awesome": "^4.7.0",
+    "iron-pages": "PolymerElements/iron-pages#^2.0.0"
   },
   "devDependencies": {
     "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.17",
